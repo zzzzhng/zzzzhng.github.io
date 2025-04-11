@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=390, initial-scale=1.0" />
   <title>Chat - iMessage</title>
   <style>
     body {
       margin: 0;
-      background-color: #e5e5ea;
+      background-color: white;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 390px;
-      margin: 0 auto;
-      height: 100vh;
+      width: 390px;
+      height: 844px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -33,6 +33,16 @@
       font-size: 15px;
       line-height: 1.4;
       word-wrap: break-word;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.3s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .from-me {
@@ -46,7 +56,7 @@
       display: flex;
       border-top: 1px solid #ccc;
       padding: 10px;
-      background-color: #fff;
+      background-color: white;
     }
 
     input[type="text"] {
@@ -63,10 +73,15 @@
       background-color: #007AFF;
       color: white;
       border: none;
-      padding: 10px 16px;
-      font-size: 16px;
-      border-radius: 20px;
+      padding: 0 14px;
+      font-size: 20px;
+      border-radius: 50%;
       cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     button:hover {
@@ -77,13 +92,12 @@
 <body>
 
   <div class="chat-container" id="chat">
-    <!-- 초기 메시지 -->
-    <div class="message from-me">Hi, this is my portfolio ✨</div>
+    <div class="message from-me">Welcome to my portfolio!</div>
   </div>
 
   <div class="input-area">
     <input type="text" id="messageInput" placeholder="iMessage처럼 입력해보세요" />
-    <button onclick="sendMessage()">Send</button>
+    <button onclick="sendMessage()">➤</button>
   </div>
 
   <script>
@@ -99,7 +113,7 @@
       chat.appendChild(bubble);
 
       input.value = "";
-      chat.scrollTop = chat.scrollHeight; // 최신 메시지로 스크롤
+      chat.scrollTop = chat.scrollHeight;
     }
   </script>
 
