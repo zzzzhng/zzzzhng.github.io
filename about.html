@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me - iMessage</title>
+  <title>Chat - iMessage</title>
   <style>
     body {
       margin: 0;
@@ -11,14 +11,19 @@
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       max-width: 390px;
       margin: 0 auto;
-      padding: 20px;
-      box-sizing: border-box;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .chat-container {
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      overflow-y: auto;
+      flex-grow: 1;
     }
 
     .message {
@@ -37,24 +42,66 @@
       border-bottom-right-radius: 2px;
     }
 
-    .from-them {
-      align-self: flex-start;
-      background-color: #f1f0f0;
-      color: #000;
-      border-bottom-left-radius: 2px;
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      margin-left: 10px;
+      background-color: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005BBB;
     }
   </style>
 </head>
 <body>
 
-  <div class="chat-container">
-    <div class="message from-them">Hi! Who are you?</div>
-    <div class="message from-me">I’m Minjeong, a creative student :)</div>
-    <div class="message from-them">Cool! What do you do?</div>
-    <div class="message from-me">I make antibacterial nanotech... and cute websites</div>
-    <div class="message from-them">Wow! Can we talk more?</div>
-    <div class="message from-me">Of course! 💬</div>
+  <div class="chat-container" id="chat">
+    <!-- 초기 메시지 -->
+    <div class="message from-me">Hi, this is my portfolio ✨</div>
   </div>
+
+  <div class="input-area">
+    <input type="text" id="messageInput" placeholder="iMessage처럼 입력해보세요" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chat = document.getElementById('chat');
+      const bubble = document.createElement('div');
+      bubble.classList.add('message', 'from-me');
+      bubble.textContent = message;
+      chat.appendChild(bubble);
+
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight; // 최신 메시지로 스크롤
+    }
+  </script>
 
 </body>
 </html>
