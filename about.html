@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- 뷰포트 메타 태그: 너비를 390px(아이폰 12)로 고정하고, 초기 스케일 1 -->
   <meta name="viewport" content="width=390, initial-scale=1.0" />
-  <title>Chat - iMessage</title>
+  <title>About Me - iMessage Style</title>
   <style>
+    /* 기본 설정 */
     body {
       margin: 0;
       background-color: white;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       width: 390px;
-      height: 844px;
+      /* height는 JavaScript에서 뷰포트 높이로 설정 */
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
+    /* 채팅 영역 */
     .chat-container {
       padding: 20px;
       display: flex;
@@ -26,39 +29,57 @@
       flex-grow: 1;
     }
 
+    /* 메시지 말풍선 기본 스타일 */
     .message {
+      position: relative;
       max-width: 75%;
       padding: 10px 14px;
       border-radius: 20px;
       font-size: 15px;
       line-height: 1.4;
       word-wrap: break-word;
+      background-color: #f1f0f0; /* 기본 배경 (내가 아닌 상대방 메시지용) */
+      color: #000;
+      /* 애니메이션: 새 메시지가 밑에서 위로 올라오며 나타남 */
       opacity: 0;
-      transform: translateY(10px);
-      animation: fadeInUp 0.3s forwards;
+      transform: translateY(20px);
+      animation: slideUp 0.3s forwards;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* 내 메시지 (파란색 말풍선) */
     .from-me {
       align-self: flex-end;
       background-color: #007AFF;
       color: white;
+      /* tail 디자인을 위한 조정 */
       border-bottom-right-radius: 2px;
     }
 
+    /* 내 메시지의 말풍선 꼬리 (오른쪽 아래에 작게 표시) */
+    .from-me::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: #007AFF;
+      border-bottom: 0;
+      border-right: 0;
+      margin-bottom: -1px;
+    }
+
+    /* 전송 입력 영역 */
     .input-area {
       display: flex;
+      align-items: center;
       border-top: 1px solid #ccc;
       padding: 10px;
       background-color: white;
     }
 
+    /* 입력창 */
     input[type="text"] {
       flex: 1;
       padding: 10px 14px;
@@ -68,51 +89,74 @@
       outline: none;
     }
 
+    /* Send 버튼: 화살표 모양 */
     button {
       margin-left: 10px;
       background-color: #007AFF;
       color: white;
       border: none;
-      padding: 0 14px;
-      font-size: 20px;
-      border-radius: 50%;
-      cursor: pointer;
+      /* 원형 버튼, 아이콘은 ↑ 모양 */
       width: 40px;
       height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 20px;
+      line-height: 1;
     }
 
     button:hover {
       background-color: #005BBB;
     }
+
+    /* 메시지 전송 애니메이션 */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- 채팅 메시지 표시 영역 -->
   <div class="chat-container" id="chat">
+    <!-- 초기 메시지 예시 -->
     <div class="message from-me">Welcome to my portfolio!</div>
   </div>
 
+  <!-- 메시지 입력 및 전송 영역 -->
   <div class="input-area">
-    <input type="text" id="messageInput" placeholder="iMessage처럼 입력해보세요" />
-    <button onclick="sendMessage()">➤</button>
+    <input type="text" id="messageInput" placeholder="메시지를 입력하세요" />
+    <button onclick="sendMessage()">↑</button>
   </div>
 
+  <!-- 뷰포트 높이를 동적으로 설정하는 스크립트 -->
   <script>
+    function setBodyHeight() {
+      document.body.style.height = `${window.innerHeight}px`;
+    }
+    setBodyHeight();
+    window.addEventListener('resize', setBodyHeight);
+
     function sendMessage() {
       const input = document.getElementById('messageInput');
       const message = input.value.trim();
       if (message === "") return;
-
       const chat = document.getElementById('chat');
       const bubble = document.createElement('div');
       bubble.classList.add('message', 'from-me');
       bubble.textContent = message;
       chat.appendChild(bubble);
-
       input.value = "";
+      // 스크롤을 최신 메시지로 이동
       chat.scrollTop = chat.scrollHeight;
     }
   </script>
