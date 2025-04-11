@@ -1,91 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I♡IK</title>
   <style>
-    /* 전체 스타일 */
     body {
-      max-width: 400px;
-      margin: 0 auto;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
       background-color: #f9f9f9;
-      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 390px; /* iPhone 12 화면 너비 */
+      margin: 0 auto;
+      overflow-x: hidden;
     }
 
-    /* 네비게이션 바 */
-    .navbar {
-      position: sticky;
-      top: 0;
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 10px;
+    .container {
+      min-height: 100vh;
+      padding-bottom: 70px; /* 탭바 높이만큼 공간 확보 */
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      z-index: 1000;
-    }
-
-    .navbar a {
-      color: #007AFF;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-
-    /* 본문 */
-    .content {
-      padding: 40px 20px 20px; /* 위에 nav 때문에 여유 공간 확보 */
-      text-align: center;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 36px;
+      text-align: center;
       color: #222;
     }
 
-    p {
-      font-size: 18px;
-      color: #555;
+    /* 탭바 */
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 390px;
+      margin: 0 auto;
+      height: 60px;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
     }
 
-    .btn {
-      display: block;
-      background-color: #007AFF;
-      color: white;
+    .tabbar a {
       text-decoration: none;
-      padding: 12px 0;
-      border-radius: 10px;
-      margin: 30px auto 0;
-      width: 80%;
-      font-weight: bold;
-      font-size: 16px;
+      color: #007AFF;
+      font-size: 14px;
+      text-align: center;
     }
 
-    .btn:hover {
-      background-color: #005BBB;
+    .tabbar a:hover {
+      color: #005BBB;
     }
   </style>
 </head>
 <body>
 
-  <!-- 네비게이션 바 -->
-  <div class="navbar">
+  <div class="container">
+    <h1>I♡IK</h1>
+  </div>
+
+  <div class="tabbar">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="#">Contact</a>
-  </div>
-
-  <!-- 본문 -->
-  <div class="content">
-    <h1>I♡IK</h1>
-    <p>for</p>
-    <a href="about.html" class="btn">About Me</a>
   </div>
 
 </body>
