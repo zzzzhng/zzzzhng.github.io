@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- 뷰포트 메타 태그: 너비를 390px(아이폰 12)로 고정하고, 초기 스케일 1 -->
+  <!-- 뷰포트 메타 태그: 너비를 390px(아이폰 12) 기준으로 고정 -->
   <meta name="viewport" content="width=390, initial-scale=1.0" />
   <title>About Me - iMessage Style</title>
   <style>
@@ -12,7 +12,7 @@
       background-color: white;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       width: 390px;
-      /* height는 JavaScript에서 뷰포트 높이로 설정 */
+      /* 높이는 JavaScript에서 동적으로 설정합니다. */
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -40,34 +40,29 @@
       word-wrap: break-word;
       background-color: #f1f0f0; /* 기본 배경 (내가 아닌 상대방 메시지용) */
       color: #000;
-      /* 애니메이션: 새 메시지가 밑에서 위로 올라오며 나타남 */
+      /* 메시지 전송 애니메이션 */
       opacity: 0;
       transform: translateY(20px);
       animation: slideUp 0.3s forwards;
     }
 
-    /* 내 메시지 (파란색 말풍선) */
+    /* 내 메시지 (파란 말풍선) */
     .from-me {
       align-self: flex-end;
       background-color: #007AFF;
       color: white;
-      /* tail 디자인을 위한 조정 */
-      border-bottom-right-radius: 2px;
     }
 
-    /* 내 메시지의 말풍선 꼬리 (오른쪽 아래에 작게 표시) */
+    /* iMessage 스타일의 말풍선 꼬리 (SVG 이용) */
     .from-me::after {
       content: "";
       position: absolute;
-      bottom: 0;
-      right: -10px;
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-      border-top-color: #007AFF;
-      border-bottom: 0;
-      border-right: 0;
-      margin-bottom: -1px;
+      bottom: 2px;
+      right: -7px;
+      width: 16px;
+      height: 16px;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23007AFF' d='M0,16 C0,8 8,0 16,0 L16,2 C9,2 2,9 2,16 Z'/></svg>") no-repeat center center;
+      background-size: 16px 16px;
     }
 
     /* 전송 입력 영역 */
@@ -89,13 +84,12 @@
       outline: none;
     }
 
-    /* Send 버튼: 화살표 모양 */
+    /* Send 버튼: 원형 버튼에 ↑ 모양을 사용 (필요시 화살표 모양 조정) */
     button {
       margin-left: 10px;
       background-color: #007AFF;
       color: white;
       border: none;
-      /* 원형 버튼, 아이콘은 ↑ 모양 */
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -111,7 +105,7 @@
       background-color: #005BBB;
     }
 
-    /* 메시지 전송 애니메이션 */
+    /* 메시지 전송 애니메이션: 밑에서 위로 자연스럽게 올라오도록 */
     @keyframes slideUp {
       from {
         opacity: 0;
@@ -126,9 +120,8 @@
 </head>
 <body>
 
-  <!-- 채팅 메시지 표시 영역 -->
+  <!-- 채팅 메시지 영역 -->
   <div class="chat-container" id="chat">
-    <!-- 초기 메시지 예시 -->
     <div class="message from-me">Welcome to my portfolio!</div>
   </div>
 
@@ -138,7 +131,7 @@
     <button onclick="sendMessage()">↑</button>
   </div>
 
-  <!-- 뷰포트 높이를 동적으로 설정하는 스크립트 -->
+  <!-- 뷰포트 높이 동적 설정 스크립트 -->
   <script>
     function setBodyHeight() {
       document.body.style.height = `${window.innerHeight}px`;
@@ -156,7 +149,6 @@
       bubble.textContent = message;
       chat.appendChild(bubble);
       input.value = "";
-      // 스크롤을 최신 메시지로 이동
       chat.scrollTop = chat.scrollHeight;
     }
   </script>
