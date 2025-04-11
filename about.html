@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>About Me</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me - iMessage</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #e5e5ea;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 75%;
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-size: 15px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .from-me {
+      align-self: flex-end;
+      background-color: #007AFF;
+      color: white;
+      border-bottom-right-radius: 2px;
+    }
+
+    .from-them {
+      align-self: flex-start;
+      background-color: #f1f0f0;
+      color: #000;
+      border-bottom-left-radius: 2px;
+    }
+  </style>
 </head>
 <body>
-  <h1>About Me</h1>
-  <p>This is the about page of my portfolio.</p>
-  <a href="index.html">Back to Home</a>
+
+  <div class="chat-container">
+    <div class="message from-them">Hi! Who are you?</div>
+    <div class="message from-me">I’m Minjeong, a creative student :)</div>
+    <div class="message from-them">Cool! What do you do?</div>
+    <div class="message from-me">I make antibacterial nanotech... and cute websites</div>
+    <div class="message from-them">Wow! Can we talk more?</div>
+    <div class="message from-me">Of course! 💬</div>
+  </div>
+
 </body>
 </html>
